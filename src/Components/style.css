@@ -1,0 +1,36 @@
+ul{
+    padding: 15px;
+}
+ul li{
+    font-size: 18px;
+    color: white;
+    margin-bottom: 15px;
+}
+.icon{
+    /* margin-top: ; */
+    color: white;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 50%;
+}
+
+.text a{
+    color: white;
+    font-size: 18px;
+}
+
+.form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.form-control{
+    margin-bottom: 33px;
+}
