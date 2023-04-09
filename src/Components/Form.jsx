@@ -43,7 +43,7 @@ const Form = () => {
             
             <Stack
                 sx={{
-                    width: '50%'
+                    width: '65%'
                 }}
             >
 

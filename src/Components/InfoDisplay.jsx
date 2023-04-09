@@ -7,7 +7,7 @@ import './style.css'
 const InfoDisplay = () => {
     var margin = '40px'
   return (
-    <Box bgcolor={'#844F93'} p={8} flex={1}>
+    <Box bgcolor={'#844F93'} p={8} flex={1} className='info'>
 
         {/* logo */}
         <Box
@@ -58,6 +58,7 @@ const InfoDisplay = () => {
         </Box>
 
     </Box>
+   
   )
 }
 

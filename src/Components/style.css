@@ -34,3 +34,15 @@ ul li{
 .form-control{
     margin-bottom: 33px;
 }
+
+.info{
+    display: none;
+}
+
+@media (min-width: 1000px) {
+    
+    .info{
+        display: block;
+        padding: 0;
+    }
+}
