@@ -1,5 +1,6 @@
 import React from 'react'
 import Select from '@mui/material/Select';
+import { useState } from 'react';
 import MenuItem from '@mui/material/MenuItem';
 import TextField from '@mui/material/TextField';
 import {Box, Typography, Stack, FormControl, InputLabel, Button} from '@mui/material'
@@ -7,8 +8,16 @@ import {Box, Typography, Stack, FormControl, InputLabel, Button} from '@mui/mate
 import './style.css'
 
 const Form = () => {
-    const [selectedYear, handleYearChange] = React.useState('');
-    const [selectedCourse, handleCourseChange] = React.useState('');
+    //set state
+    const [selectedYear, handleYearChange] = useState('');
+    const [selectedCourse, handleCourseChange] = useState('');
+     const [name, setName] = useState('');
+     //error state
+    const [error, setError] = useState('');
+    const [error2, setError2] = useState('');
+    const [nameError, setNameError] = useState('');
+    const [submitted, setSubmitted] = useState(false);
+
 
     const years = [
         '2022',
@@ -31,14 +40,57 @@ const Form = () => {
 
     const handleChangeYear = (event) => {
         handleYearChange(event.target.value);
+        setError('');
     };
     const handleChangeCourse = (event) => {
         handleCourseChange(event.target.value);
+        setError2('')
     };
+        const handleNameChange = (e) => {
+        setName(e.target.value);
+        setError('');
+    };
+
+    const handleSubmit =(e) => {
+        e.preventDefault();
+
+        // Perform form validation logic
+        if (!selectedYear) {
+            setError('Please select Graduation Year.');
+            return;
+        }
+        if (!selectedCourse) {
+            setError2('Please select Course of Study.');
+            return;
+        }
+        if (name === '') {
+            setNameError('Please enter your name.');
+            return;
+        }
+
+        const formData = {
+            name: name,
+            course: selectedCourse,
+            years: selectedYear
+        };
+        console.log('Form data:', formData);
+
+        // Set submitted state to true upon successful form submission
+        setSubmitted(true);
+    };
+    
+    // if (submitted) {
+    //     return  <div style={{ color: 'green', textAlign: 'center' }}>Form submitted successfully!</div>
+    // }
+
+
+    const errors = (error && <div style={{ color: 'red' }}>{error}</div>)
+    const errors2 = (error2 && <div style={{ color: 'red' }}>{error2}</div>)
+    const nameErrors = (nameError && <div style={{ color: 'red' }}>{nameError}</div>)
 
   return (
     <Box sx={{flex: 2}}>
-        <form action="#" className='form'>
+        <form action="#" className='form' onSubmit={handleSubmit}>
             <Typography fontSize={'32px'} color={'141414'} fontWeight={'600'} marginBottom={'40px'}>Verify Certificate</Typography>
             
             <Stack
@@ -61,6 +113,7 @@ const Form = () => {
                         </MenuItem>
                         ))}
                     </Select>
+                    {errors}
                 </FormControl>
 
                 <FormControl fullWidth className='form-control' style={{marginBottom: '33px'}}>
@@ -77,6 +130,7 @@ const Form = () => {
                         </MenuItem>
                         ))}
                     </Select>
+                    {errors2}
                 </FormControl >
 
                 <FormControl style={{marginBottom: '33px'}}>
@@ -84,7 +138,9 @@ const Form = () => {
                         label="Full Name"
                         variant="outlined"
                         type='text'
+                        onChange={handleNameChange}
                     />
+                    {nameErrors}
                 </FormControl>
 
                 <Button 
@@ -101,7 +157,7 @@ const Form = () => {
                     }}              
                  >
                     Verify Result
-                </Button>
+                </Button>           
             </Stack>
 
         </form>
