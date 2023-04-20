@@ -66,6 +66,15 @@ const Form = () => {
         if (name === '') {
             setNameError('Please enter your name.');
             return;
+        }else(
+            setNameError([])
+        )
+
+        if (!name.match(/^[a-zA-Z]+$/)) {
+            setNameError("Only letters")
+        }
+        if (name.length < 3) {
+            setNameError('name must be more than 3 latters')
         }
 
         const formData = {
